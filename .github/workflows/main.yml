@@ -11,6 +11,10 @@
        steps:
          - uses: actions/checkout@v3
 
+         - name: Build Java
+           run: |
+             mvn clean package
+
          - name: Build Docker image
            run: |
              docker build -t claudiobianco/java-product:latest .
