@@ -1,0 +1,24 @@
+   name: Build and Push Docker Image
+
+   on:
+     push:
+       branches:
+         - main
+
+   jobs:
+     build-and-push:
+       runs-on: ubuntu-latest
+       steps:
+         - uses: actions/checkout@v3
+
+         - name: Build Docker image
+           run: |
+             docker build -t claudiobianco/java-product:latest .
+
+         - name: Login to Docker Hub
+           run: |
+             docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
+         - name: Push Docker image to Docker Hub
+           run: |
+             docker push claudiobianco/java-product:latest
