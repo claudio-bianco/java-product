@@ -20,8 +20,7 @@
              docker build -t claudiobianco/java-product:latest .
 
          - name: Login to Docker Hub
-           run: |
-             echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
+           run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
          - name: Push Docker image to Docker Hub
            run: |
